@@ -1,18 +1,14 @@
 
-input
-{
-    background-color:  var(--placeholder-color);
-}
-
 div.SignInBtn
 {
-    background-color: #4C64FF;
-    font-size: 1.1rem;
-    
+    background-color: var(--primary-color);
+    font-size: 1.1rem;   
 }
 h1{
   font-size: 1.5rem;
+  font-weight: 600;
 }
 label,span ,p,a , input[placeholder]{
     font-size: 0.9rem;
+    color: var(--color-text-gray);
 }
