@@ -1,0 +1,43 @@
+
+            <form> 
+            <div class="mx-lg-5">
+                <img src="/images/logo.png" class="w-25" alt="">
+            </div>
+            <div>
+                <h1 class="my-3  px-lg-5">Log in to your account </h1>
+                <p class="text-secondary  px-lg-5 ">Welcome back! Please enter your details.</p>
+            </div>
+            <div class="px-lg-5 ">
+                <!-- Email Input  -->
+                <div>
+                    <label for="email" class="py-2">Email  </label>
+                    <input pInputText id="email" aria-describedby="username-help" class="w-100 "
+                        placeholder="Enter your Email" />
+                </div>
+                <!-- Password Input -->
+                <div>
+                    <label for="password" class="py-2 ">Password </label>
+                    <input pInputText id="password" type="password" aria-describedby="username-help" class="w-100"
+                        placeholder="........" />
+                </div>
+                <div class="d-grid d-xl-flex justify-content-between my-4 ">
+                    <div class="d-flex align-items-center">
+                        <div class="">
+                            <p-checkbox [binary]="true" />
+                        </div>
+                        <span class=" px-1 px-xl-2  ">Remember for 30 Days .</span>
+                    </div>
+                    <div>
+                        <a class="text-warning text-decoration-none fs-md-5" routerLink="forget-password">Forget Password</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="SignInBtn rounded-3 mx-lg-5">
+                <button type="submit" class="btn SignInBtn w-100 text-white fw-bold" (click)="onSubmit()">Sign In</button>
+
+            </div>
+       
+
+            </form>
+  
