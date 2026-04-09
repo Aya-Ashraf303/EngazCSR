@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+  font-family: "Montserrat", sans-serif;
+}
+:root{
+    --primary-color:#4C64FF;
+    --orange-color:#FF6006;
+    --color-text-gray:#344054;
+}
