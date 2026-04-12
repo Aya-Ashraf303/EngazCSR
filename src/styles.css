@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+*
+{
+      font-family: "Montserrat", sans-serif;
+}
+:root{
+    --sidebar-bg:#1D2939;
+    --sidebar-item-color:#D0D5DD;
+    --sidebar-arrow-bg:#1D2939;
+    --sidebar-active-item-bg:#344054;
+    --submenu-arrows-color:#D0D5DD;
+};

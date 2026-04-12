@@ -1,0 +1,34 @@
+.mysidebar
+{
+    background-color: var(--sidebar-bg);
+    width: 250px;
+    transition: width 0.2s;
+}
+button , label,i{
+    color: var(--sidebar-item-color);
+}
+.mysidebar.collapsed {
+    width:80px ;
+    transition: width 0.2s;
+}
+.mysidebar button:hover{
+    color: var(--sidebar-item-color);
+}
+.span-text
+{
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.sidebar-arrows-size
+{
+    width: 14px;
+    height: 14px;
+}
+.contactus-bg
+{
+    background-color: var(--sidebar-active-item-bg);
+}
+.submenu-arrows
+{
+    color: var(--submenu-arrows-color);
+}
