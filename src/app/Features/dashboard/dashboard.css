@@ -1,0 +1,14 @@
+.layout
+{
+    display: flex;
+}
+.sidebar
+{
+position: fixed;
+top: 0;
+bottom: 0;
+}
+.content
+{
+    margin-left: 280px;
+}

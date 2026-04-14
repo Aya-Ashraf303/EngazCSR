@@ -2,10 +2,12 @@
 {
       font-family: "Montserrat", sans-serif;
 }
+
 :root{
-    --sidebar-bg:#1D2939;
-    --sidebar-item-color:#D0D5DD;
-    --sidebar-arrow-bg:#1D2939;
-    --sidebar-active-item-bg:#344054;
-    --submenu-arrows-color:#D0D5DD;
-};
+    --color-primary:#1E293B;
+    --color-secondary:#667085;
+    --text-primary:#D0D5DD;
+    --active-bg:#344054;
+    --loading-bg:#e5e7eb41;
+    --active-color:#fff;
+}

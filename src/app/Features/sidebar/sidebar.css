@@ -1,34 +1,133 @@
-.mysidebar
-{
-    background-color: var(--sidebar-bg);
-    width: 250px;
+.mysidebar {
+    background-color: var(--color-primary);
+    width: 280px;
+    min-height: 100vh;
     transition: width 0.2s;
+
 }
-button , label,i{
-    color: var(--sidebar-item-color);
+
+.mysidebar:hover {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
+.mysidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.mysidebar::-webkit-scrollbar-thumb {
+    background-color: var(--active-bg);
+    border-radius: 10px;
+}
+
+.mysidebar::-webkit-scrollbar-track {
+    background: white;
+}
+
+.sidebar-nav {
+    padding: 32px 0 11px 0;
+    gap: 24px;
+}
+
+button,
+label,
+i,
+.mysidebar button:hover,
+li {
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.sidebar-navigation {
+    padding: 0 16px;
+}
+
+.sidebar-item-spacing {
+    padding: 8px 12px;
+}
+
+.sidebar-item-fonts {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.list-items-gap {
+    gap: 16px;
+}
+
+.text-icon-gap {
+    gap: 12px;
+}
+
+.dashboard-back-btn {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: start;
+}
+
+.sidebar-nav-header .sidebar-logo {
+    width: 161px;
+}
+
+.sidebar-nav-header {
+
+    padding: 0 20px 0 24px;
+    width: 206px;
+}
+
+.sidebar-nav-arrows {
+    padding: 8px;
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-navigation-icons {
+    width: 24px;
+    height: 24px;
+}
+
 .mysidebar.collapsed {
-    width:80px ;
+    width: 80px;
     transition: width 0.2s;
 }
-.mysidebar button:hover{
-    color: var(--sidebar-item-color);
+
+.submenu-list {
+    padding: 3.402px;
 }
-.span-text
-{
-    font-size: 0.9rem;
+
+.submenu-items-spacing,
+.sidebar-settings-items {
+    padding: 12px 12px 8px 10px;
+}
+
+.submenu-settings-list {
+    padding: 3.402px;
+}
+
+.sidebar-divider {
+    width: 218px;
+    border-top: 1px solid var(--color-secondary);
+}
+
+.support-footer {
+    font-size: 12px;
     font-weight: 500;
+    padding: 0 16px 32px 0;
 }
-.sidebar-arrows-size
-{
-    width: 14px;
-    height: 14px;
+
+.support-footer-img {
+    width: 80.015px;
 }
-.contactus-bg
-{
-    background-color: var(--sidebar-active-item-bg);
+
+p-skeleton {
+    background-color: var(--loading-bg);
 }
-.submenu-arrows
-{
-    color: var(--submenu-arrows-color);
+
+.activated-item,
+.activated-item i {
+    background-color: var(--active-bg);
+    border-radius: 5px;
+    color: var(--active-color);
+
 }

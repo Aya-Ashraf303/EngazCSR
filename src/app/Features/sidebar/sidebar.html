@@ -1,86 +1,187 @@
-<div class="mysidebar min-vh-100 px-2 d-flex flex-column justify-content-between" #sidebar>
-    <div>
-        <span class="d-flex justify-content-between align-items-center px-3 pt-2 pb-3 ">
-            @if (!isSideBarCollapsed) {
-            <img src="/images/Logo.png" class="mt-4" alt="">
-            <button class=" btn btn-toggle mt-3 sidebar-arrows-size border-0" (click)="toggleSideBar()">
-                <i class="bi bi-arrow-left text-white rounded-2 fw-semibold"></i>
-            </button>
+<div class="mysidebar d-flex flex-column justify-content-between" #sidebar>
+    <div class="sidebar-nav  d-flex flex-column">
+        <span class="d-flex justify-content-between  ">
+            @if (!isSideBarCollapsed()) {
+            <div class="sidebar-nav-header  d-flex justify-content-between  ">
+                <img src="/images/logo.svg" class="sidebar-logo" alt="">
+                <button class=" btn btn-toggle  border-0 " (click)="toggleSideBar()">
+
+                    <img src="/images/icons/arrow-left.svg" alt="">
+                </button>
+            </div>
             }@else{
-            <div class=" d-flex flex-column align-content-center  ">
-                <img src="/images/subLogo.png" class=" pt-2 " alt="">
-                <button class="btn btn-toggle sidebar-arrows-size mt-2 border-0 " (click)="toggleSideBar()">
-                    <i class="bi bi-arrow-right text-white rounded-2 pe-2"></i>
+            <div class=" d-flex flex-wrap justify-content-center  ">
+                <img src="/images/subLogo.png" class="" alt="">
+                <button class=" btn btn-toggle  border-0 " (click)="toggleSideBar()">
+
+
+                    <i class="bi bi-arrow-right sidebar-nav-arrows "></i>
                 </button>
             </div>
             }
         </span>
-        @if (!isSideBarCollapsed) {
-        <span class="span-text text-white mx-1">CRM</span>
+        @if (isSettingsClicked() && !isSideBarCollapsed()) {
+        <button
+            class="sidebar-navigation text-icon-gap dashboard-back-btn btn btn-toggle d-flex w-full align-items-center    border-0"
+            (click)="toggleSettings()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M15 8H1M1 8L8 15M1 8L8 1" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            <span class="dashboard-back-btn text-align-start">Back to dashboard</span>
+        </button>
+
         }
-        <ul class="list-unstyled ">
-            @for (item of items; track $index) {
-            <li class="my-1 w-full">
-                <div class="px-2 d-flex align-items-center">
-                    <i [class]="item.icon" class="fs-5 mx-auto py-2" data-bs-toggle="collapse"
+        <ul class="list-unstyled sidebar-navigation d-flex flex-wrap  list-items-gap mb-0">
+
+
+            @if (isLoading()) {
+            @for (item of skelton; track $index) {
+            <li class="w-100 sidebar-item-spacing">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center text-icon-gap">
+                        <p-skeleton shape="square" size="1rem"></p-skeleton>
+                        @if (!isSideBarCollapsed()) {
+                        <p-skeleton width="100px" height="12px"></p-skeleton>
+                        }
+                    </div>
+                </div>
+            </li>
+            }
+            }
+            @else if(!isSettingsClicked())
+            {
+            @for (item of items(); track $index) {
+
+            <li class=" w-100 sidebar-item-spacing sidebar-item-fonts" [routerLink]="item.routerLink"
+                routerLinkActive="activated-item">
+                <div class="d-flex text-icon-gap ">
+                    <i [class]="'bi '+ item.icon" class="sidebar-navigation-icons " data-bs-toggle="collapse"
                         [attr.data-bs-target]="'#collapse' + $index" aria-expanded="false"
                         (click)="toggleSubmenu($index)"></i>
 
-                    @if (!isSideBarCollapsed) {
-                    <button
-                        class="d-flex justify-content-between border-0 w-100  sidebar-item w-full btn btn-toggle align-items-center rounded collapsed fw-semibold  "
+                    @if (!isSideBarCollapsed()) {
+
+                    <span
+                        class="d-flex justify-content-between border-0 w-100  align-items-center rounded collapsed fw-semibold  "
                         data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + $index" aria-expanded="false"
                         (click)="toggleSubmenu($index)">
                         {{item.label}}
-                        @if(item.items && !isSideBarCollapsed){
-                        <i class="ms-2 submenu-arrows"
-                            [class]="isSubMenuOpened===$index?'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+                        @if(item.items && !isSideBarCollapsed()){
+                        <i class=" submenu-arrows"
+                            [class]="isSubMenuOpened()===$index?'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
                         }
-                    </button>
+                    </span>
                     }
                 </div>
+                @if (item.items?.length) {
                 <div class="collapse" [id]="'collapse'+$index">
-                    <ul class="list-unstyled fw-normal pb-1 ">
+                    <ul class="list-unstyled fw-normal   ">
                         @for (subitem of item.items; track $index) {
                         <div class="d-flex align-items-center">
-                            <li class="my-1 ms-3 ps-4 ">
+                            <li class="submenu-items-spacing d-flex text-icon-gap">
                                 <i [class]="subitem.icon"></i>
 
-                                @if (!isSideBarCollapsed) {
-                                <label href="#" class="p-2 px-3 rounded">{{subitem.label}} </label>
+                                @if (!isSideBarCollapsed()) {
+                                <label href="#" class=" rounded">{{subitem.label}} </label>
                                 }
                             </li>
                         </div>
                         }
                     </ul>
                 </div>
+                }
             </li>
+            }}
+            @else {
+            @for (item of SettingsItems(); track $index) {
+
+            <li class=" w-100 sidebar-item-spacing sidebar-item-fonts">
+                <div class="d-flex text-icon-gap ">
+                    <i [class]="item.icon" class=" sidebar-navigation-icons " data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#collapse' + $index" aria-expanded="false"
+                        (click)="toggleSubmenu($index)"></i>
+
+                    @if (!isSideBarCollapsed()) {
+
+                    <span
+                        class="d-flex justify-content-between border-0 w-100  align-items-center rounded collapsed fw-semibold  "
+                        data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + $index" aria-expanded="false"
+                        (click)="toggleSubmenu($index)">
+                        {{item.label}}
+                        @if(item.items && !isSideBarCollapsed()){
+                        <i class=" submenu-arrows"
+                            [class]="isSubMenuOpened()===$index?'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+                        }
+                    </span>
+                    }
+                </div>
+                @if (item.items?.length) {
+                <div class="collapse" [id]="'collapse'+$index">
+                    <ul class="list-unstyled fw-normal   ">
+                        @for (subitem of item.items; track $index) {
+                        <div class="d-flex align-items-center">
+                            <li class="submenu-items-spacing d-flex text-icon-gap">
+                                <i [class]="subitem.icon"></i>
+
+                                @if (!isSideBarCollapsed()) {
+                                <label href="#" class=" rounded">{{subitem.label}} </label>
+                                }
+                            </li>
+                        </div>
+                        }
+                    </ul>
+                </div>
+                }
+            </li>
+            }
             }
         </ul>
     </div>
-    <div class=" d-grid bottom-0">
-        @if (!isSideBarCollapsed) {
-        <ul class="list-unstyled">
-            <li class="w-full ">
-                <button class="btn btn-toggle mt-3  contactus-bg">
-                    <i class="bi bi-megaphone text-white rounded-2 "></i>
-                    <span class="ps-2 span-text">Need Help? Contact Us!</span>
-                </button>
-            </li>
-            <li class=" mb-3">
-                <button class="btn btn-toggle mt-3">
-                    <i class="bi bi-gear text-white rounded-2 "></i>
-                    <span class="px-3">CRM Settings</span>
-                </button>
-            </li>
+    <div>
+        @if (!isSideBarCollapsed() && !isSettingsClicked()) {
+        <ul class="list-unstyled sidebar-navigation d-flex flex-wrap list-items-gap mb-0">
             <li>
-                <small class=" text-white fs-sm" style="font-size:12px "> Created by </small>
-                <img src="/images/Logo.png" class="w-25" alt="">
+                <div clasS="sidebar-divider"></div>
+            </li>
+
+            @if (!isSettingsClicked()) {
+
+            <li class="w-100 d-flex flex-wrap sidebar-item-spacing sidebar-item-fonts text-icon-gap"
+                (click)="toggleSettings()">
+
+                <i class="bi bi-gear sidebar-navigation-icons "></i>
+                <span> Settings</span>
+
+            </li>
+            }@else {
+            <li class="w-100 d-flex flex-wrap sidebar-item-spacing sidebar-item-fonts text-icon-gap"
+                (click)="toggleSettings()">
+
+                <i class="bi bi-house sidebar-navigation-icons "></i>
+                <span> Dashboard</span>
+
+            </li>
+            }
+            <li class="w-100 d-flex flex-wrap sidebar-item-spacing sidebar-item-fonts text-icon-gap">
+
+                <i class="bi bi-headphones sidebar-navigation-icons "></i>
+                <span> Contact Support</span>
+
+            </li>
+            <li class="w-100 d-flex flex-wrap sidebar-item-spacing sidebar-item-fonts text-icon-gap">
+
+                <i class="bi bi-sticky sidebar-navigation-icons "></i>
+                <span> Support Tickets</span>
+            </li>
+            <li class="w-100 support-footer">
+                <small class="text-white"> Created by </small>
+                <img src="/images/logo.svg" class="support-footer-img" alt="">
             </li>
         </ul>
-        }@else {
-        <div class="mx-auto my-3">
-            <i class="bi bi-gear text-white rounded-2 "></i>
+        }@if(!isSettingsClicked() && isSideBarCollapsed()) {
+        <div class="d-grid sidebar-item-spacing w-full " (click)="toggleSettings()">
+            <i class="bi bi-gear text-white rounded-2 m-auto  sidebar-navigation-icons"></i>
         </div>
         }
     </div>
