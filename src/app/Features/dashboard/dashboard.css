@@ -4,11 +4,32 @@
 }
 .sidebar
 {
+background-color: var(--color-primary);
 position: fixed;
 top: 0;
 bottom: 0;
+
 }
+.sidebar:hover
+{
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+.sidebar::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--active-bg);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: white;
+}
+
 .content
 {
-    margin-left: 280px;
+    margin-left:18rem;
 }

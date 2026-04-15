@@ -1,38 +1,34 @@
 <div class="mysidebar d-flex flex-column justify-content-between" #sidebar>
-    <div class="sidebar-nav  d-flex flex-column">
+    <div class="sidebar-nav gap-4  d-flex flex-column">
         <span class="d-flex justify-content-between  ">
             @if (!isSideBarCollapsed()) {
             <div class="sidebar-nav-header  d-flex justify-content-between  ">
-                <img src="/images/logo.svg" class="sidebar-logo" alt="">
-                <button class=" btn btn-toggle  border-0 " (click)="toggleSideBar()">
-
-                    <img src="/images/icons/arrow-left.svg" alt="">
+                <img src="/images/logo.svg" class="sidebar-logo" alt="No Logo">
+                <button class=" btn btn-toggle  border-0 ">
+                    <img src="/images/icons/arrow-left.svg" alt="No icon" (click)="toggleSideBar()">
                 </button>
             </div>
             }@else{
-            <div class=" d-flex flex-wrap justify-content-center  ">
-                <img src="/images/subLogo.png" class="" alt="">
-                <button class=" btn btn-toggle  border-0 " (click)="toggleSideBar()">
-
-
-                    <i class="bi bi-arrow-right sidebar-nav-arrows "></i>
+            <div class="d-flex flex-wrap justify-content-center  ">
+                <img src="/images/subLogo.png" alt="No logo ">
+                <button class=" btn btn-toggle border-0 " (click)="toggleSideBar()">
+                    <i class="bi bi-arrow-right sidebar-icons p-2  "></i>
                 </button>
             </div>
             }
         </span>
         @if (isSettingsClicked() && !isSideBarCollapsed()) {
         <button
-            class="sidebar-navigation text-icon-gap dashboard-back-btn btn btn-toggle d-flex w-full align-items-center    border-0"
+            class="px-3  text-icon-gap dashboard-back-btn fw-semibold btn btn-toggle d-flex w-full align-items-center    border-0"
             (click)="toggleSettings()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M15 8H1M1 8L8 15M1 8L8 1" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-            <span class="dashboard-back-btn text-align-start">Back to dashboard</span>
+
+
+            <img src="/images/icons/arrow-left.svg" alt="No icon">
+            <span class="dashboard-back-btn fw-semibold">Back to dashboard</span>
         </button>
 
         }
-        <ul class="list-unstyled sidebar-navigation d-flex flex-wrap  list-items-gap mb-0">
+        <ul class="list-unstyled px-3 d-flex flex-wrap gap-3 mb-0">
 
 
             @if (isLoading()) {
@@ -53,13 +49,13 @@
             {
             @for (item of items(); track $index) {
 
-            <li class=" w-100 sidebar-item-spacing sidebar-item-fonts" [routerLink]="item.routerLink"
+            <li class=" w-100 sidebar-item-spacing fw-semibold fs-6" [routerLink]="item.routerLink"
                 routerLinkActive="activated-item">
                 <div class="d-flex text-icon-gap ">
-                    <i [class]="'bi '+ item.icon" class="sidebar-navigation-icons " data-bs-toggle="collapse"
-                        [attr.data-bs-target]="'#collapse' + $index" aria-expanded="false"
-                        (click)="toggleSubmenu($index)"></i>
-
+                    <button class="btn border-0 p-0">
+                        <i [class]="'bi '+ item.icon" class="sidebar-icons " data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#collapse' + $index" aria-expanded="false" (click)="toggleSubmenu($index)"></i>
+                    </button>
                     @if (!isSideBarCollapsed()) {
 
                     <span
@@ -98,10 +94,10 @@
 
             <li class=" w-100 sidebar-item-spacing sidebar-item-fonts">
                 <div class="d-flex text-icon-gap ">
-                    <i [class]="item.icon" class=" sidebar-navigation-icons " data-bs-toggle="collapse"
-                        [attr.data-bs-target]="'#collapse' + $index" aria-expanded="false"
-                        (click)="toggleSubmenu($index)"></i>
-
+                    <button class="btn border-0 p-0">
+                        <i [class]="item.icon" class=" sidebar-icons " data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#collapse' + $index" aria-expanded="false" (click)="toggleSubmenu($index)"></i>
+                    </button>
                     @if (!isSideBarCollapsed()) {
 
                     <span
@@ -140,48 +136,48 @@
     </div>
     <div>
         @if (!isSideBarCollapsed() && !isSettingsClicked()) {
-        <ul class="list-unstyled sidebar-navigation d-flex flex-wrap list-items-gap mb-0">
+        <ul class="list-unstyled px-3 d-flex flex-wrap gap-3 mb-0">
             <li>
                 <div clasS="sidebar-divider"></div>
             </li>
 
             @if (!isSettingsClicked()) {
 
-            <li class="w-100 d-flex flex-wrap sidebar-item-spacing sidebar-item-fonts text-icon-gap"
+            <li class="w-100 d-flex flex-wrap sidebar-item-spacing fw-semibold fs-6 text-icon-gap"
                 (click)="toggleSettings()">
 
-                <i class="bi bi-gear sidebar-navigation-icons "></i>
+                <i class="bi bi-gear sidebar-icons "></i>
                 <span> Settings</span>
 
             </li>
             }@else {
-            <li class="w-100 d-flex flex-wrap sidebar-item-spacing sidebar-item-fonts text-icon-gap"
+            <li class="w-100 d-flex flex-wrap sidebar-item-spacing fw-semibold fs-6 text-icon-gap"
                 (click)="toggleSettings()">
 
-                <i class="bi bi-house sidebar-navigation-icons "></i>
+                <i class="bi bi-house sidebar-icons "></i>
                 <span> Dashboard</span>
 
             </li>
             }
-            <li class="w-100 d-flex flex-wrap sidebar-item-spacing sidebar-item-fonts text-icon-gap">
+            <li class="w-100 d-flex flex-wrap sidebar-item-spacing fw-semibold fs-6 text-icon-gap">
 
-                <i class="bi bi-headphones sidebar-navigation-icons "></i>
+                <i class="bi bi-headphones sidebar-icons "></i>
                 <span> Contact Support</span>
 
             </li>
-            <li class="w-100 d-flex flex-wrap sidebar-item-spacing sidebar-item-fonts text-icon-gap">
+            <li class="w-100 d-flex flex-wrap sidebar-item-spacing fw-semibold fs-6 text-icon-gap">
 
-                <i class="bi bi-sticky sidebar-navigation-icons "></i>
+                <i class="bi bi-sticky sidebar-icons "></i>
                 <span> Support Tickets</span>
             </li>
             <li class="w-100 support-footer">
                 <small class="text-white"> Created by </small>
-                <img src="/images/logo.svg" class="support-footer-img" alt="">
+                <img src="/images/logo.svg" class="support-footer-img" alt="No Footer Image">
             </li>
         </ul>
         }@if(!isSettingsClicked() && isSideBarCollapsed()) {
         <div class="d-grid sidebar-item-spacing w-full " (click)="toggleSettings()">
-            <i class="bi bi-gear text-white rounded-2 m-auto  sidebar-navigation-icons"></i>
+            <i class="bi bi-gear text-white rounded-2 m-auto  sidebar-icons"></i>
         </div>
         }
     </div>

@@ -26,8 +26,6 @@ export class Sidebar implements OnInit {
     {
       label: 'Leads',
       icon: 'bi-people',
-      // routerLink: 'loginnn',
-
     },
     {
       label: 'Telesales Leads',
